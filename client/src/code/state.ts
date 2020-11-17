@@ -104,6 +104,10 @@ export function createState(inParentComponent) {
       const cl = this.state.messages.slice(0);
       cl.push({id: inMessage.id, date: inMessage.date, from: inMessage.from, subject: inMessage.subject});
       this.setState({messages: cl});
+    }.bind(inParentComponent),
+
+    showContact: function(inID: string, inName: string, inEmail: string): void {
+      this.setState({currentView: "contact", contactID: inID, contactName: inName, contactEmail: inEmail});
     }.bind(inParentComponent)
     
   };

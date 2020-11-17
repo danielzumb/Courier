@@ -51,7 +51,7 @@ class BaseLayout extends Component {
 				</div>
 
 				<div className="centerView">
-					{this.state.currentView === "welcome" && <WelcomeView />}
+					{this.state.currentView === "welcome" && <WelcomeView state={this.state}/>}
 					{(this.state.currentView === "message" || this.state.currentView === "compose")
 						&& <MessageView state={this.state} />}
 					{(this.state.currentView === "contact" || this.state.currentView === "contactAdd")

@@ -1,1 +1,7 @@
-console.log("Hello World from your main file!");
+import React, { Component } from "react";
+
+const MessageView = ({state}) => (
+    <div></div>
+);
+
+export default MessageView;
