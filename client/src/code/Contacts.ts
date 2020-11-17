@@ -4,6 +4,7 @@ export interface IContact {
     email: string
 }
 
+// Worker decouples the client reliance on the server
 export class Worker{
     public async listContacts(): Promise<IContact[]>{
         const response: AxiosResponse = await axios.get(`${config.serverAddress}/contacts`);
