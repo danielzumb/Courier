@@ -6,9 +6,6 @@ import Button from "@material-ui/core/Button";
 import NewContactIcon from "@material-ui/icons/ContactMail";
 import NewMessageIcon from "@material-ui/icons/Email";
 
-import { createState } from "../state";
-
-
 const Toolbar = ({state}) => (
     <div>
         <Button variant="contained" 
@@ -29,3 +26,5 @@ const Toolbar = ({state}) => (
         </Button>
     </div>
 );
+
+export default Toolbar;
