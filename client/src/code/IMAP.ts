@@ -1,3 +1,6 @@
+import axios from "axios";
+import {config} from "./config";
+
 export interface IMailbox{
     name: string,
     path: string
