@@ -15,6 +15,7 @@ import ContactList from "./ContactList";
 import WelcomeView from "./WelcomeView";
 import ContactView from "./ContactView";
 import MessageView from "./MessageView";
+
 import { createState } from "../state";
 
 class BaseLayout extends Component {

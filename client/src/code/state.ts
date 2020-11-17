@@ -1,38 +1,25 @@
-// App imports.
 import * as Contacts from "./Contacts";
 import { config } from "./config";
 import * as IMAP from "./IMAP";
 import * as SMTP from "./SMTP";
 import { ImagePalette } from "material-ui/svg-icons";
 
-
-/**
- * This function must be called once and only once from BaseLayout.
- */
 export function createState(inParentComponent) {
 
   return {
 
-
-    // Flag: Is the please wait dialog visible?
     pleaseWaitVisible : false,
 
-    // List of contacts.
     contacts : [ ],
 
-    // List of mailboxes.
     mailboxes : [ ],
 
-    // List of messages in the current mailbox.
     messages : [ ],
 
-    // The view that is currently showing ("welcome", "message", "compose", "contact" or "contactAdd").
     currentView : "welcome",
 
-    // The currently selected mailbox, if any.
     currentMailbox : null,
 
-    // The details of the message currently being viewed or composed, if any.
     messageID : null,
     messageDate : null,
     messageFrom : null,
@@ -40,16 +27,9 @@ export function createState(inParentComponent) {
     messageSubject : null,
     messageBody : null,
 
-    // The details of the contact currently being viewed or added, if any.
     contactID : null,
     contactName : null,
     contactEmail : null,
-
-
-    // ------------------------------------------------------------------------------------------------
-    // ------------------------------------ View Switch functions -------------------------------------
-    // ------------------------------------------------------------------------------------------------
-
 
     showHidePleaseWait : function(inVisible: boolean): void {
         this.setState({pleaseWaitVisibile: inVisible});
@@ -65,8 +45,40 @@ export function createState(inParentComponent) {
       const cl = this.state.contacts.slice(0);
       cl.push({_id: inContact._id, name: inContact.name, email: inContact.email});
       this.setState({contacts: cl});
-    }.bind(inParentComponent)
+    }.bind(inParentComponent),
 
+    showComposeMessage: function(inType:string): void {
+      switch (inType) {
+        case "new":
+            this.setState({currentView: "compose", 
+              messageTo: "", 
+              messageSubject: "", 
+              messageBody: "", 
+              messageFrom: config.userEmail
+          });
+          break;
+        case "reply":
+          this.setState({currentView: "compose",
+            messageTo: this.state.messageFrom,
+            messageSubject: `Re: ${this.state.messageSubject}`,
+            messageBody: `\n\n---- Original MEssage ----\n\n${this.state.messageBody}`,
+            messageFrom: config.userEmail
+          });
+          break;
+        case "contact":
+            this.setState({currentView: "compose",
+            messageTo: this.state.contactEmail,
+            messageSubject: "",
+            messageBody: "",
+            messageFrom: config.userEmail
+          });
+          break;
+      }
+    }.bind(inParentComponent),
+
+    showAddContact: function(): void {
+      this.setState({currentView: "contactAdd", contactID: null, contactName: "", contactEmail: ""});
+    }.bind(inParentComponent)
     
   };
 }
