@@ -11,7 +11,7 @@ import Person from "@material-ui/icons/Person";
 
 const ContactList = ({state}) => (
     <List>
-        {state.mailboxes.map(value => {
+        {state.contacts.map(value => {
             return(
                 <ListItem key={value} button onClick={ () => 
                     state.showContact(value._id, value.name, value.email)}>
