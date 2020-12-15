@@ -95,7 +95,7 @@ const MessageView = ({state}) => (
                 </Button>
         }
 
-    </form>>
+    </form>
 );
 
 export default MessageView;
