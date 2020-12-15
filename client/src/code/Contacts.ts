@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import {config} from "./config";
 
 export interface IContact {
@@ -14,7 +14,7 @@ export class Worker{
         return response.data;
     }
 
-    public async addContact(inContact: IContact): Promise<IContact{
+    public async addContact(inContact: IContact): Promise<IContact>{
         const response: AxiosResponse = await axios.post(`${config.serverAddress}/contacts`, inContact);
         return response.data;
     }
